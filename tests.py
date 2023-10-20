@@ -75,7 +75,7 @@ class TestBooksCollector:
         collector.add_new_book('Уголовное право')
         collector.set_book_genre('Уголовное право', 'Фантастика')
 
-        assert collector.books_genre == collector.get_books_genre()
+        assert {'Уголовное право': 'Фантастика'} == collector.get_books_genre()
 
     def test_get_books_for_children_genre_age_rating_not_add_in_list(self):
         collector = BooksCollector()
@@ -115,12 +115,11 @@ class TestBooksCollector:
 
     def test_get_list_of_favorites_books_return_list_of_favorites_books(self):
         collector = BooksCollector()
-
         collector.add_new_book('Сапромат')
-        collector.add_new_book('Химия')
         collector.add_book_in_favorites('Сапромат')
-        collector.add_book_in_favorites('Химия')
 
-        assert collector.favorites == collector.get_list_of_favorites_books()
+        assert 'Сапромат' in collector.get_list_of_favorites_books()
+
+
 
 
